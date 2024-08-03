@@ -6,7 +6,7 @@ interface Props {
 }
 
 const cats = ['Светлое', 'Тёмное', 'Пшеничное', 'IPA (India Pale Ale)', 'Стаут', 'Портер', 'Лагер', 'Эль'];
-const activeIndex = 0;
+const activeIndex = 1;
 
 export const Categories: React.FC<Props> = ({ className }) => {
     return (

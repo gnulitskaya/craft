@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Title } from './title';
 import { FilterCheckbox } from './filter-checkbox';
 import { RangeSlider } from '../ui';
+import { CheckboxFiltersGroup } from './checkbox-filters-group';
 // import { RangeSlider } from '../ui/range-slider';
 
 interface Props {
@@ -15,11 +16,11 @@ interface Props {
 export const Filters: React.FC<Props> = ({ className }) => {
   return (
     <div className={className}>
-      <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
+      <Title text="Региональные сорта" size="sm" className="mb-5 font-bold" />
 
       <div className="flex flex-col gap-4">
-        <FilterCheckbox text="Можно собирать" value="1" />
-        <FilterCheckbox text="Новинки" value="2" />
+        <FilterCheckbox text="Пиво местных производителей" value="1" />
+        <FilterCheckbox text="Импортное пиво" value="2" />
       </div>
 
       <div className="mt-5 border-y border-y-neutral-100 py-6 pb-7">
@@ -31,7 +32,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
         <RangeSlider min={0} max={1000} step={10} value={[0, 1000]} />
       </div>
 
-      {/* <CheckboxFiltersGroup
+      <CheckboxFiltersGroup
         className="mt-5"
         title="Формат"
         limit={6}
@@ -111,7 +112,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
             value: '6',
           },
         ]}
-      /> */}
+      />
     </div>
   );
 };
