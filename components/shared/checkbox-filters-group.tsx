@@ -29,11 +29,19 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   defaultValue,
 }) => {
   const [showAll, setShowAll] = React.useState(false);
+  const [searchValue, setSearchValue] = React.useState('');
   // const [selected, { add, toggle }] = useSet<string>(new Set([]));
 
   // const onCheckedChange = (value: string) => {
   //   toggle(value);
   // };
+
+  const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  }
+
+  const list = showAll? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLocaleLowerCase())) 
+  : defaultItems?.slice(0, limit) || items;
 
   // React.useEffect(() => {
   //   if (defaultValue) {
@@ -51,16 +59,16 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 
       {showAll && (
         <div className="mb-5">
-          <Input placeholder={searchInputPlaceholder} className="bg-gray-50 border-none" />
+          <Input onChange={onChangeSearchInput} placeholder={searchInputPlaceholder} className="bg-gray-50 border-none" />
         </div>
       )}
 
       <div className="flex flex-col gap-4 max-h-96 pr-2 overflow-auto scrollbar">
-        {(showAll ? items : defaultItems || items).map((item) => (
+        {list.map((item, index) => (
           <FilterCheckbox
+            key={index}
             onCheckedChange={() => console.log(item)}
             // checked={selected.has(item.value)}
-            key={String(item.value)}
             value={item.value}
             text={item.text}
             endAdornment={item.endAdornment}
